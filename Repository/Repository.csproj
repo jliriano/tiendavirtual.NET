@@ -43,6 +43,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modelos\Productos.cs" />
     <Compile Include="Modelos\LowStock.cs">
       <DependentUpon>TiendaEntities.tt</DependentUpon>
     </Compile>
