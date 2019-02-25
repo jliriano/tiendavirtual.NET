@@ -34,6 +34,61 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="Modelos\TiendaEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TiendaEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Modelos\TiendaEntities.edmx.diagram">
+      <DependentUpon>TiendaEntities.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Modelos\LowStock.cs">
+      <DependentUpon>TiendaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\Pedido.cs">
+      <DependentUpon>TiendaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\Producto.cs">
+      <DependentUpon>TiendaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\TiendaEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TiendaEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\TiendaEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TiendaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\TiendaEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TiendaEntities.edmx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modelos\TiendaEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TiendaEntities.edmx</DependentUpon>
+      <LastGenOutput>TiendaEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Modelos\TiendaEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TiendaEntities.edmx</DependentUpon>
+      <LastGenOutput>TiendaEntities.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
