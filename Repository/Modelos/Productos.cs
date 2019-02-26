@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,11 @@ namespace Repository.Modelos
             nuevoProd.cantidad = cantidad;
             nuevoProd.fotoUri = fotoUri;
             Te.Productos.Add(nuevoProd);
+        }
+
+        public IEnumerable GetProductosList()
+        {
+            return Te.Productos;
         }
     }
 }

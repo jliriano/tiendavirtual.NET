@@ -12,7 +12,7 @@ namespace Repository.Modelos
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class P1TiendaVirtualDBEntities : DbContext
     {
         public P1TiendaVirtualDBEntities()
