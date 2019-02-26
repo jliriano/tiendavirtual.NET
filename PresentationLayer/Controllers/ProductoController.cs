@@ -1,4 +1,5 @@
-﻿using Repository.Modelos;
+﻿using PresentationLayer.Models;
+using Repository.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,28 @@ namespace PresentationLayer.Controllers
                 return HttpNotFound();
             }
             return View(producto);
+        }
+
+        // POST: Producto
+        public ActionResult AddCarrito(int productoId, int productoCant, CarritoCompra cc)
+        {
+            Producto np = new Producto();
+            np = db.Productos.Find(productoId);
+            np.cantidad = productoCant;
+
+            //Buscar redundancias
+            Producto ep = cc.Find(x => x.Id == productoId);
+            if (ep != null)
+            {
+                np.cantidad += ep.cantidad;
+                int index = cc.IndexOf(ep);
+                cc[index] = np;
+            }
+            else
+            {
+                cc.Add(np);
+            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }

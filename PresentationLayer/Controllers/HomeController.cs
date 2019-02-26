@@ -1,4 +1,5 @@
-﻿using Repository.Modelos;
+﻿using PresentationLayer.Models;
+using Repository.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,12 @@ namespace PresentationLayer.Controllers
 
         private P1TiendaVirtualDBEntities db = new P1TiendaVirtualDBEntities();
 
-        public ActionResult Index()
+        public ActionResult Index(CarritoCompra cc)
         {
             return View("Productos", db.Productos.ToList());
         }
 
-        public ActionResult Productos()
+        public ActionResult Productos(CarritoCompra cc)
         {
             return RedirectToAction("Index");
         }

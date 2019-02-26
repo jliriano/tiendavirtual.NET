@@ -35,7 +35,7 @@
                         }
                         else
                         {
-                            using (Html.BeginForm("AddCarrito", "Productos", FormMethod.Post))
+                            using (Html.BeginForm("AddCarrito", "Producto", FormMethod.Post))
                             {
                                 <input name="productoId" type="hidden" value="@Model.Id" />
                                 <p class="text-success"><b>En Stock (@Model.cantidad)</b></p>
