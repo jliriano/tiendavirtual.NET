@@ -1,4 +1,5 @@
 ﻿using Repository.Modelos;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,10 +13,9 @@ namespace BusinessLayer
     {
         Productos ProductoManager = new Productos();
 
-        public void addProducto(string nombre, string descripcion,
-            float precio, int cantidad, string fotoUri)
+        public void addProducto(Producto producto)
         {
-            ProductoManager.Add(nombre, descripcion, precio, cantidad, fotoUri);
+            Repository.Modelos.Productos.Add(producto);
         }
 
         public IEnumerable getProductos()

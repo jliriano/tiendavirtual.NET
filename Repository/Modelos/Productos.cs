@@ -11,20 +11,16 @@ namespace Repository.Modelos
     {
         P1TiendaVirtualDBEntities Te = new P1TiendaVirtualDBEntities();
 
-        public void Add(string nombre, string descripcion,
-            float precio, int cantidad, string fotoUri)
+        public static void Add(Producto nuevoProd)
         {
-            Producto nuevoProd = new Producto();
-            nuevoProd.nombre = nombre;
-            nuevoProd.descripcion = descripcion;
-            nuevoProd.precio = precio;
-            nuevoProd.cantidad = cantidad;
-            nuevoProd.fotoUri = fotoUri;
+            P1TiendaVirtualDBEntities Te = new P1TiendaVirtualDBEntities();
             Te.Productos.Add(nuevoProd);
+            Te.SaveChanges();
         }
 
         public IEnumerable GetProductosList()
         {
+            P1TiendaVirtualDBEntities Te = new P1TiendaVirtualDBEntities();
             return Te.Productos;
         }
     }

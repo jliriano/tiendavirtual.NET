@@ -22,7 +22,7 @@
             <img src="~/Content/img/@item.fotoUri" width="100" />
         </td>
         <td>
-            <h3>@Html.ActionLink(item.nombre, "Details", new { id = item.Id })</h3>
+            <h3>@Html.ActionLink(item.nombre, "Detalle", "Producto", new { id = item.Id }, null)</h3>
             <p>@Html.DisplayFor(modelItem => item.descripcion)</p>
         </td>
         <td>

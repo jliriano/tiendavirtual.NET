@@ -52,7 +52,6 @@ namespace PresentationLayer.Controllers
             {
                 db.Productos.Add(producto);
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
 
             return View(producto);
