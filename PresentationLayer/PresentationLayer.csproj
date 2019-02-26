@@ -247,9 +247,11 @@
     <Content Include="Views\ProductosAdmin\Details.cshtml" />
     <Content Include="Views\ProductosAdmin\Edit.cshtml" />
     <Content Include="Views\ProductosAdmin\Index.cshtml" />
+    <Content Include="Views\Home\Productos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Producto\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
