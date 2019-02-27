@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Repository.Modelos.Producto>
+@{
+    ViewBag.Title = "Carrito de Compra";
+    decimal totalCuenta = 0;
+    decimal precioActual = 0;
+}
+<h2>Carrito de Compras</h2>
+<table class="table">
+    <tr>
+        <th>
+            Producto
+        </th>
+        <th>
+            Precio
+        </th>
+        <th>
+            Cantidad
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        {
+            totalCuenta += (decimal)item.precio;
+            precioActual = (decimal)item.precio;
+        }
+        <tr>
+            <td>
+                @Html.ActionLink(item.nombre, "Detalle/" + item.Id, "Producto")
+
+            </td>
+            <td>
+                @Math.Round(precioActual, 2)
+            </td>
+            <td>
+                @item.cantidad
+            </td>
+            <td>
+                @Html.ActionLink("Eliminar", "QuitarProducto",
+               new { id = item.Id },
+               new { onclick = "return confirm('Está seguro que desea eliminar el producto del carrito?');" })
+            </td>
+        </tr>
+    }
+    <tr>
+        <th style="text-align:right">SUBTOTAL</th>
+        <th>@Math.Round(totalCuenta, 2)</th>
+        <th></th>
+        <th></th>
+    </tr>
+</table>
+
+@using (Html.BeginForm("Checkout", "Orders", FormMethod.Post))
+{
+    if (Model.Count() == 0)
+    {
+        <button type="submit" disabled="disabled" class="btn btn-primary">Checkout</button>
+    }
+    else
+    {
+        <button type="submit" class="btn btn-primary">Checkout</button>
+    }
+}
