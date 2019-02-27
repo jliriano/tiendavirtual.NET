@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Repository.Modelos.Producto>
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Checkout";
+    decimal subtotal = 0;
+    decimal iva = 0;
+    decimal total = 0;
+    decimal envio = (decimal)5.99;
+
+    foreach (var item in Model)
+    {
+        subtotal += (decimal)item.precio;
+    }
+    iva = subtotal * (decimal)0.21;
+    total = subtotal + iva + envio;
+}
+@if (Request.IsAuthenticated)
+{
+    <h2>Checkout</h2>
+    <div class="row">
+        <table class="table">
+            <tr>
+                <th><h4>Detalles de la Compra</h4></th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.cantidad x @item.nombre
+                    </td>
+                    <td>
+                        @(Math.Round(item.cantidad * item.precio, 2))
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td style="text-align:right">Subtotal</td>
+                <td>@Math.Round(subtotal, 2)</td>
+            </tr>
+            <tr>
+                <td style="text-align:right">IVA</td>
+                <td>@Math.Round(iva, 2)</td>
+            </tr>
+            <tr>
+                <td style="text-align:right">Gastos de Envío</td>
+                <td>@Math.Round(envio, 2)</td>
+            </tr>
+            <tr>
+                <th style="text-align:right">TOTAL</th>
+                <th>@Math.Round(total, 2)</th>
+            </tr>
+        </table>
+    </div>
+    <div class="row">
+        <h4>Datos del Cliente</h4>
+        @using (Html.BeginForm("FinalizarCheckout", "Orders", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group col-sm-6">
+                <label for="nombreCliente">Nombre: </label>
+                <input type="text" class="form-control" name="nombreCliente" required="required" />
+                <label for="emailCliente">Email: </label>
+                <input type="email" class="form-control" name="emailCliente" required="required" value="@User.Identity.Name" />
+                <label for="telefonoCliente">Teléfono: </label>
+                <input type="tel" class="form-control" name="telefonoCliente" required="required" />
+                <label for="direccionEnvio">Dirección de Envío: </label>
+                <input type="text" class="form-control" name="direccionEnvio" required="required" />
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="numeroTarjeta">Número de Tarjeta de Crédito/Débito: </label>
+                <input type="text" class="form-control" name="numeroTarjeta" required="required" />
+                <label for="tarjetaCVV">CVV: </label>
+                <input type="text" class="form-control" name="tarjetaCVV" required="required" />
+                <label for="nombreTarjeta">Nombre en la Tarjeta: </label>
+                <input type="text" class="form-control" name="nombreTarjeta" required="required" />
+                <label for="direccionFacturacion">Dirección de Facturación: </label>
+                <input type="text" class="form-control" name="direccionFacturacion" required="required" />
+            </div>
+            <button type="submit" class="btn btn-danger">Pagar y Finalizar</button>
+        }
+    </div>
+}
+else
+{
+    Response.Redirect("~/Account/Login");
+}

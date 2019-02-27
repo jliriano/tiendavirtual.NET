@@ -1,0 +1,10 @@
+﻿@model Repository.Modelos.Pedido
+@{
+    ViewBag.Title = "Orden Finalizada";
+}
+
+<h2>Orden Finalizada</h2>
+<div class="hero">
+    <h3 class="text-success">Su orden #@Model.Id ha sido completada correctamente!</h3>
+    <p>Enviaremos @Model.detalle a su dirección @Model.direccion_cliente.</p>
+</div>
