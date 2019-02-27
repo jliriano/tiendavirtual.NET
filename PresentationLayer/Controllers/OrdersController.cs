@@ -64,6 +64,7 @@ namespace PresentationLayer.Controllers
                     Producto prod = db.Productos.Find(item.Id);
                     db.Productos.Find(item.Id).cantidad = prod.cantidad - item.cantidad;
                     db.SaveChanges();
+                    checkLowStock(item.Id);
                 }
                 string detalle = "";
                 decimal subtotal = 0;
@@ -95,5 +96,26 @@ namespace PresentationLayer.Controllers
             return View("CheckoutError");
         }
 
+        private void checkLowStock(int id)
+        {
+            if(db.Productos.Find(id).cantidad <= 5)
+            {
+                bool notListed = true;
+                foreach(var item in db.LowStocks)
+                {
+                    if(item.producto_Id == id)
+                    {
+                        notListed = false;
+                    }
+                }
+                if(notListed)
+                {
+                    LowStock lowstock = new LowStock();
+                    lowstock.producto_Id = id;
+                    db.LowStocks.Add(lowstock);
+                    db.SaveChanges();
+                }                
+            }
+        }
     }
 }

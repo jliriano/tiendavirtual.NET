@@ -114,6 +114,12 @@ namespace PresentationLayer.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: ProductosAdmin/LowStock
+        public ActionResult LowStock()
+        {
+            return View(db.LowStocks);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

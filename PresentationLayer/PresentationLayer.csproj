@@ -257,6 +257,7 @@
     <Content Include="Views\Orders\Checkout.cshtml" />
     <Content Include="Views\Orders\CheckoutError.cshtml" />
     <Content Include="Views\Orders\FinalizarCheckout.cshtml" />
+    <Content Include="Views\ProductosAdmin\LowStock.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
