@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Repository.Modelos.LowStock>
+
+@{
+    ViewBag.Title = "Productos en Stock Bajo";
+}
+
+<h2>Productos en Stock Bajo</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Producto.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Producto.cantidad)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Producto.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Producto.cantidad)
+        </td>
+        <td>
+            @Html.ActionLink("Eliminar de Low Stock", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>
